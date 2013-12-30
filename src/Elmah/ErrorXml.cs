@@ -19,6 +19,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+// Initial work to add Session Logging done by James Manning: http://blog.sublogic.com/2009/12/31/patch-to-enable-session-variable-logging-with-elmah/
+// Wrap-up into project and display page updates by Jared Dutton
 #endregion
 
 [assembly: Elmah.Scc("$Id: ErrorXml.cs 776 2011-01-12 21:09:24Z azizatif $")]
@@ -147,6 +149,7 @@ namespace Elmah
                 switch (reader.Name)
                 {
                     case "serverVariables" : collection = error.ServerVariables; break;
+                    case "sessionVariables": collection = error.SessionVariables; break;
                     case "queryString"     : collection = error.QueryString; break;
                     case "form"            : collection = error.Form; break;
                     case "cookies"         : collection = error.Cookies; break;
@@ -237,6 +240,7 @@ namespace Elmah
             if (writer == null) throw new ArgumentNullException("writer");
 
             WriteCollection(writer, "serverVariables", error.ServerVariables);
+            WriteCollection(writer, "sessionVariables", error.SessionVariables);
             WriteCollection(writer, "queryString", error.QueryString);
             WriteCollection(writer, "form", error.Form);
             WriteCollection(writer, "cookies", error.Cookies);

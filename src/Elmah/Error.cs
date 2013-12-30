@@ -19,6 +19,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+// Initial work to add Session Logging done by James Manning: http://blog.sublogic.com/2009/12/31/patch-to-enable-session-variable-logging-with-elmah/
+// Wrap-up into project and display page updates by Jared Dutton
 #endregion
 
 [assembly: Elmah.Scc("$Id: Error.cs 923 2011-12-23 22:02:10Z azizatif $")]
@@ -36,6 +38,7 @@ namespace Elmah
     using Mannex;
     using Thread = System.Threading.Thread;
     using NameValueCollection = System.Collections.Specialized.NameValueCollection;
+    using System.Web.SessionState;
 
     #endregion
 
@@ -59,6 +62,7 @@ namespace Elmah
         private int _statusCode;
         private string _webHostHtmlMessage;
         private NameValueCollection _serverVariables;
+        private NameValueCollection _sessionVariables;
         private NameValueCollection _queryString;
         private NameValueCollection _form;
         private NameValueCollection _cookies;
@@ -151,6 +155,7 @@ namespace Elmah
                 });
 
                 _serverVariables = CopyCollection(request.ServerVariables);
+                _sessionVariables = CopyCollection(context.Session);
                 _queryString = CopyCollection(qsfc.QueryString);
                 _form = CopyCollection(qsfc.Form);
                 _cookies = CopyCollection(qsfc.Cookies);
@@ -312,6 +317,16 @@ namespace Elmah
             set { _webHostHtmlMessage = value; }
         }
 
+        /// <summary> 
+        /// Gets a collection representing the session values 
+        /// captured as part of diagnostic data for the error. 
+        /// </summary> 
+
+        public NameValueCollection SessionVariables
+        {
+            get { return FaultIn(ref _sessionVariables); }
+        } 
+
         /// <summary>
         /// Gets a collection representing the Web server variables
         /// captured as part of diagnostic data for the error.
@@ -392,6 +407,28 @@ namespace Elmah
 
             return new NameValueCollection(collection);
         }
+
+        private static NameValueCollection CopyCollection(HttpSessionState sessionState)
+        {
+            return CopyCollection(new HttpSessionStateWrapper(sessionState));
+        }
+
+        private static NameValueCollection CopyCollection(HttpSessionStateBase sessionState)
+        { 
+            if (sessionState == null || sessionState.Count == 0) 
+                return null; 
+ 
+            NameValueCollection copy = new NameValueCollection(sessionState.Count); 
+ 
+            foreach (string sessionKey in sessionState.Keys) 
+            { 
+                string sessionValue = (sessionState[sessionKey] ?? string.Empty).ToString(); 
+ 
+                copy.Add(sessionKey, sessionValue); 
+            } 
+ 
+            return copy; 
+        } 
 
         private static NameValueCollection CopyCollection(HttpCookieCollection cookies)
         {
