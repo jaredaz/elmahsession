@@ -45,6 +45,15 @@
         SignalMessage.DataBind();
     }
 
+    private void AddSampleSessionVariables_Click(object sender, EventArgs e)
+    {
+        Session.Add("SampleSessionValue", "This is a sample session value");
+        Session.Add("UserName", "sspiegel");
+        Session.Add("Company", "Red Dragon Holdings");
+        Session.Add("Permissions", 543);
+        
+    }
+    
     private static void ThrowSampleException()
     {
         throw new System.ApplicationException();
@@ -194,6 +203,16 @@
         demo application, visit <a href="elmah.axd/test">elmah.axd/test</a> to generate the test error.
         Again, this will generate what is known as the <em><a href="http://en.wikipedia.org/wiki/Yellow_Screen_of_Death#ASP.NET">yellow screen of death</a></em>
         and you will need to hit the &ldquo;back&rdquo; button in your browser to return here.
+    </p>
+    <h3>Session Tracking</h3>
+    <p>
+        This branch adds session logging to Elmah as well as a nice way to view it on the error detail 
+        page. To view this functionality, add some session variables with the button below, then click
+        one of the Throw Exception buttons above. This will allow you to see a logged exception with 
+        session variables.
+    </p>
+    <p>
+        <asp:Button ID="Button1" runat="server" Text="Create Session Variables" OnClick="AddSampleSessionVariables_Click" />
     </p>
     <h2>Viewing Errors</h2>
     <p>
