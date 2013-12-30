@@ -10,6 +10,7 @@
 </script>
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
+    <title>Errors RSS View</title>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <style type="text/css">
         body
@@ -69,7 +70,7 @@
         </FooterTemplate>
     </asp:Repeater>
     <asp:XmlDataSource ID="ErrorLogRssDataSource" runat="server" EnableCaching="false"
-        DataFile='<%# Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute(ErrorLogRssUrl) %>'
+        DataFile='<%# Request.Url.GetLeftPart(UriPartial.Authority) + System.Web.VirtualPathUtility.ToAbsolute(ErrorLogRssUrl) %>'
         XPath="rss/channel/item" />
     <!-- $Id: ErrorsRssView.aspx 572 2009-05-11 14:48:43Z azizatif $ -->
 </body>
