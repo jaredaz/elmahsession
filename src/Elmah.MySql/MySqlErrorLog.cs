@@ -277,7 +277,7 @@ namespace Elmah
                 parameters.Add("User", MySqlDbType.VarChar, 50).Value = user.Substring(0, Math.Min(50, user.Length));
                 parameters.Add("AllXml", MySqlDbType.Text).Value = xml;
                 parameters.Add("StatusCode", MySqlDbType.Int32).Value = statusCode;
-                parameters.Add("TimeUtc", MySqlDbType.Datetime).Value = time;
+                parameters.Add("TimeUtc", MySqlDbType.DateTime).Value = time;
 
                 return command;
             }
