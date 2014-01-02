@@ -150,18 +150,6 @@ namespace Elmah
                 var htmlOutput = new StringBuilder();
                 if (collection != null && collection.Count > 0)
                 {
-                    //var items =
-                    //    from i in Enumerable.Range(0, collection.Count)
-                    //    select new
-                    //    {
-                    //        Index = i,
-                    //        Key = collection.GetKey(i),
-                    //        Value = collection[i],
-                    //    };
-
-                    //items = items.OrderBy(e => e.Key, StringComparer.OrdinalIgnoreCase);
-
-
                     htmlOutput.AppendLine(String.Format("<div id=\"{0}\">", id));
 
                     htmlOutput.AppendLine(String.Format("<h2>{0}</h2>", title));
