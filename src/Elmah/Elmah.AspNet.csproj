@@ -284,6 +284,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="DelegatingHttpTaskAsyncHandler.cs" />
+    <Compile Include="ErrorDetailPage.generated.cs">
+      <DependentUpon>ErrorDetailPage.cshtml</DependentUpon>
+      <SubType>Code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="ErrorMailHtmlPage.generated.cs">
       <DependentUpon>ErrorMailHtmlPage.cshtml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -303,11 +309,6 @@
     </Compile>
     <Compile Include="StackTraceParser.cs" />
     <Compile Include="StyleSheetHelper.cs" />
-    <Compile Include="ErrorDetailPage.generated.cs">
-      <DependentUpon>ErrorDetailPage.cshtml</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="FuzzyTime.cs" />
     <Compile Include="HelperResult.cs" />
     <Compile Include="HttpAsyncHandler.cs" />
@@ -439,13 +440,14 @@
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>AboutPage.generated.cs</LastGenOutput>
     </None>
+    <None Include="ErrorDetailPage.cshtml">
+      <SubType>Code</SubType>
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>ErrorDetailPage.generated.cs</LastGenOutput>
+    </None>
     <None Include="ErrorMailHtmlPage.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>ErrorMailHtmlPage.generated.cs</LastGenOutput>
-    </None>
-    <None Include="ErrorDetailPage.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>ErrorDetailPage.generated.cs</LastGenOutput>
     </None>
     <None Include="MasterPage.cshtml">
       <Generator>RazorGenerator</Generator>

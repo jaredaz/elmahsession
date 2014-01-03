@@ -314,5 +314,10 @@ namespace Elmah
                 base.InsertItem(index, item);
             }
         }
+
+        public override void AddUserComments(string id, string userComments)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

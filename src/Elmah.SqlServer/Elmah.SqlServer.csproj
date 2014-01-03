@@ -113,13 +113,13 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Elmah\Elmah.csproj">
-      <Project>{C92DC151-A0BA-4A5E-A20E-620EC9C06AFF}</Project>
-      <Name>Elmah</Name>
-    </ProjectReference>
+    <Content Include="SQLServer.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SQLServer.sql" />
+    <ProjectReference Include="..\Elmah\Elmah.csproj">
+      <Project>{c92dc151-a0ba-4a5e-a20e-620ec9c06aff}</Project>
+      <Name>Elmah</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

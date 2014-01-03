@@ -111,6 +111,7 @@ namespace Elmah
             error.HostName = reader.GetAttribute("host");
             error.Type = reader.GetAttribute("type");
             error.Message = reader.GetAttribute("message");
+            error.UserComments = reader.GetAttribute("userComments");
             error.Source = reader.GetAttribute("source");
             error.Detail = reader.GetAttribute("detail");
             error.User = reader.GetAttribute("user");
@@ -220,6 +221,7 @@ namespace Elmah
             WriteXmlAttribute(writer, "host", error.HostName);
             WriteXmlAttribute(writer, "type", error.Type);
             WriteXmlAttribute(writer, "message", error.Message);
+            WriteXmlAttribute(writer, "userComments", error.UserComments);
             WriteXmlAttribute(writer, "source", error.Source);
             WriteXmlAttribute(writer, "detail", error.Detail);
             WriteXmlAttribute(writer, "user", error.User);

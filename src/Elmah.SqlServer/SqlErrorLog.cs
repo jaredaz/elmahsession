@@ -158,6 +158,36 @@ namespace Elmah
         }
 
         /// <summary>
+        /// Add user comments to an existing error. This is added in the base error node as an attribute userComments
+        /// </summary>
+        public override void AddUserComments(string id, string userComments)
+        {
+            if (id == null) throw new ArgumentNullException("id");
+            if (id.Length == 0) throw new ArgumentException(null, "id");
+
+            Guid errorGuid;
+
+            try
+            {
+                errorGuid = new Guid(id);
+            }
+            catch (FormatException e)
+            {
+                throw new ArgumentException(e.Message, "id", e);
+            }
+
+            var someError = GetError(id);
+            someError.Error.UserComments = userComments;
+            using (var connection = new SqlConnection(ConnectionString))
+            using (var command = Commands.UpdateErrorXml(errorGuid, ErrorXml.EncodeString(someError.Error)))
+            {
+                command.Connection = connection;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
         /// Returns a page of errors from the databse in descending order 
         /// of logged time.
         /// </summary>
@@ -483,6 +513,21 @@ namespace Elmah
                 parameters.Add("@AllXml", SqlDbType.NVarChar, -1).Value = xml;
                 parameters.Add("@StatusCode", SqlDbType.Int).Value = statusCode;
                 parameters.Add("@TimeUtc", SqlDbType.DateTime).Value = time;
+
+                return command;
+            }
+
+            public static SqlCommand UpdateErrorXml(
+                Guid id,
+                string xml)
+            {
+                var command = new SqlCommand("ELMAH_UpdateErrorXml");
+                command.CommandType = CommandType.StoredProcedure;
+
+                var parameters = command.Parameters;
+
+                parameters.Add("@ErrorId", SqlDbType.UniqueIdentifier).Value = id;
+                parameters.Add("@AllXml", SqlDbType.NVarChar, -1).Value = xml;
 
                 return command;
             }

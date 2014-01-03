@@ -494,5 +494,10 @@ namespace Elmah
             ThisProviderInfo.ProviderSpecificTypeProperty.SetValue(parameter, dbType, null);
             return parameter;
         }
+
+        public override void AddUserComments(string id, string userComments)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -123,6 +123,14 @@
     </li>
 </ul>
 
+@if (error.UserComments.Length != 0)
+{
+    <div id="UserComments">
+        <h2>User Comments</h2>
+    </div>
+    <pre>@error.UserComments</pre>
+}
+
 @{
     @MarkupCollection(error.ServerVariables, "ServerVariables", "Server Variables")
     @MarkupCollection(error.SessionVariables, "SessionVariables", "Session Variables")

@@ -315,5 +315,10 @@ namespace Elmah
                 totalCount = (int)command.Parameters["TotalCount"].Value;
             }
         }
+
+        public override void AddUserComments(string id, string userComments)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

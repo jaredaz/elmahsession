@@ -336,5 +336,10 @@ namespace Elmah
                 return new ErrorLogEntry(this, id, error);
             }
         }
+
+        public override void AddUserComments(string id, string userComments)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

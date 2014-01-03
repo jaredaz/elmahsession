@@ -325,62 +325,97 @@ WriteLiteral("\">JSON</a>\r\n    </li>\r\n</ul>\r\n\r\n");
 
             
             #line 126 "..\..\ErrorDetailPage.cshtml"
+ if (error.UserComments.Length != 0)
+{
+
+            
+            #line default
+            #line hidden
+WriteLiteral("    <div id=\"UserComments\">\r\n        <h2>User Comments</h2>\r\n    </div>\r\n");
+
+
+
+WriteLiteral("    <pre>");
+
+
+            
+            #line 131 "..\..\ErrorDetailPage.cshtml"
+    Write(error.UserComments);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</pre>\r\n");
+
+
+            
+            #line 132 "..\..\ErrorDetailPage.cshtml"
+}
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n");
+
+
+            
+            #line 134 "..\..\ErrorDetailPage.cshtml"
   
     
             
             #line default
             #line hidden
             
-            #line 127 "..\..\ErrorDetailPage.cshtml"
+            #line 135 "..\..\ErrorDetailPage.cshtml"
 Write(MarkupCollection(error.ServerVariables, "ServerVariables", "Server Variables"));
 
             
             #line default
             #line hidden
             
-            #line 127 "..\..\ErrorDetailPage.cshtml"
+            #line 135 "..\..\ErrorDetailPage.cshtml"
                                                                                    
     
             
             #line default
             #line hidden
             
-            #line 128 "..\..\ErrorDetailPage.cshtml"
+            #line 136 "..\..\ErrorDetailPage.cshtml"
 Write(MarkupCollection(error.SessionVariables, "SessionVariables", "Session Variables"));
 
             
             #line default
             #line hidden
             
-            #line 128 "..\..\ErrorDetailPage.cshtml"
+            #line 136 "..\..\ErrorDetailPage.cshtml"
                                                                                       
     
             
             #line default
             #line hidden
             
-            #line 129 "..\..\ErrorDetailPage.cshtml"
+            #line 137 "..\..\ErrorDetailPage.cshtml"
 Write(MarkupCollection(error.QueryString, "QueryString", "Query String"));
 
             
             #line default
             #line hidden
             
-            #line 129 "..\..\ErrorDetailPage.cshtml"
+            #line 137 "..\..\ErrorDetailPage.cshtml"
                                                                        
     
             
             #line default
             #line hidden
             
-            #line 130 "..\..\ErrorDetailPage.cshtml"
+            #line 138 "..\..\ErrorDetailPage.cshtml"
 Write(MarkupCollection(error.Cookies, "Cookies", "Cookies"));
 
             
             #line default
             #line hidden
             
-            #line 130 "..\..\ErrorDetailPage.cshtml"
+            #line 138 "..\..\ErrorDetailPage.cshtml"
                                                           
 
 

@@ -97,6 +97,7 @@ namespace Elmah
             Member(writer, "host", error.HostName);
             Member(writer, "type", error.Type);
             Member(writer, "message", error.Message);
+            Member(writer, "userComments", error.UserComments);
             Member(writer, "source", error.Source);
             Member(writer, "detail", error.Detail);
             Member(writer, "user", error.User);

@@ -57,8 +57,12 @@ namespace Elmah
         /// <summary>
         /// Logs an error in log for the application.
         /// </summary>
-        
         public abstract string Log(Error error);
+
+        /// <summary>
+        /// Add user comments to an existing error. This is added in the base error node as an attribute userComments
+        /// </summary>
+        public abstract void AddUserComments(string id, string userComments);
 
         #if ASYNC
 

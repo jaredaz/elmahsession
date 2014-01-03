@@ -246,5 +246,10 @@ namespace Elmah
                                        FileAttributes.Hidden | 
                                        FileAttributes.System));
         }
+
+        public override void AddUserComments(string id, string userComments)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

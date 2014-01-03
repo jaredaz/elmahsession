@@ -63,6 +63,20 @@ namespace Elmah
                 handler(this, new ErrorSignalEventArgs(e, context, callerInfo));
         }
 
+        public void AddUserComments(string id, string userComments)
+        {
+            AddUserComments(id, userComments, null);
+        }
+
+        public void AddUserComments(string id, string userComments, HttpContextBase context)
+        {
+            if (context == null)
+                context = new HttpContextWrapper(HttpContext.Current);
+
+            ErrorLog.GetDefault(context).AddUserComments(id, userComments);
+        }
+
+
         public void RaiseWithCallerInfo(Exception e,
             [CallerMemberName] string callerMember = null,
             [CallerFilePath] string callerFilePath = null,
@@ -92,7 +106,7 @@ namespace Elmah
 
         public static ErrorSignal FromContext(HttpContextBase context)
         {
-            if (context == null) 
+            if (context == null)
                 throw new ArgumentNullException("context");
 
             return Get(context.ApplicationInstance);
@@ -133,7 +147,7 @@ namespace Elmah
 
         private static void OnApplicationDisposed(object sender, EventArgs e)
         {
-            var application = (HttpApplication) sender;
+            var application = (HttpApplication)sender;
 
             lock (_lock)
             {
@@ -141,7 +155,7 @@ namespace Elmah
                     return;
 
                 _signalByApp.Remove(application);
-                
+
                 if (_signalByApp.Count == 0)
                     _signalByApp = null;
             }
@@ -150,15 +164,15 @@ namespace Elmah
 
     public delegate void ErrorSignalEventHandler(object sender, ErrorSignalEventArgs args);
 
-    [ Serializable ]
+    [Serializable]
     public sealed class ErrorSignalEventArgs : EventArgs
     {
         private readonly Exception _exception;
-        [ NonSerialized ]
+        [NonSerialized]
         private readonly HttpContextBase _context;
 
-        public ErrorSignalEventArgs(Exception e, HttpContextBase context) : 
-            this(e, context, null) {}
+        public ErrorSignalEventArgs(Exception e, HttpContextBase context) :
+            this(e, context, null) { }
 
         public ErrorSignalEventArgs(Exception e, HttpContextBase context, CallerInfo callerInfo)
         {

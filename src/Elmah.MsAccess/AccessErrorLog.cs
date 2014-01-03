@@ -403,5 +403,10 @@ namespace Elmah
                 }
             }
         }
+
+        public override void AddUserComments(string id, string userComments)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

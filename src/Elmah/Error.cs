@@ -56,6 +56,7 @@ namespace Elmah
         private string _typeName;
         private string _source;
         private string _message;
+        private string _userComments;
         private string _detail;
         private string _user;
         private DateTime _time;
@@ -256,6 +257,15 @@ namespace Elmah
         { 
             get { return _message ?? string.Empty; }
             set { _message = value; }
+        }
+
+        /// <summary>
+        /// Gets or set the user comments regarding the error should they be available
+        /// </summary>
+        public string UserComments
+        {
+            get { return _userComments ?? string.Empty; }
+            set { _userComments = value; }
         }
 
         /// <summary>
